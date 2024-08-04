@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server Page Test</title>
+</head>
+<body>
+    <h1>댓글 목록</h1>
+    <!-- form에 데이터를 요청하는 주소 설정 -->
+    <!-- 게시물을 수정하는 메서드로 "post" 사용 -->
+    <ul>
+        <% comments.forEach(comment => { %> 
+            <li><%= comment.id %> <%= comment.content %></li>
+            <form action="/update/<%= comment.id %>" method="post">
+                <input type="text" name="content">
+                <input type="submit" value="수정하기">
+            </form>
+            <form action="/delete/<%= comment.id %>" method="post">
+                <input type="text" name="content">
+                <input type="submit" value="삭제하기">
+            </form>
+        <% }) %>
+    </ul>
+    <hr>
+    <form action="/create" method="post">
+        <input type="text" name="content">
+        <input type="submit" value="submit">
+    </form>
+</body>
+</html>
